@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block meta %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% endblock meta %}
+        <title>
+            {% block title %}{% endblock title %}
+        </title>
+        {% block styles %}
+        <link rel="stylesheet" href="/static/style/main.css" />
+        <link rel="stylesheet" href="/static/style/google-material-icons.css">
+        <link rel="stylesheet" href="/static/style/material.blue_grey-deep_orange.min.css" />
+        <link rel="stylesheet" href="/static/stlye/roboto-font.css" />
+        {% endblock styles %}
+    <head>
+    <body>
+        <div class="mdl-layout mdl-js-layout">
+        {% block top_menu %}
+            <header class="mdl-layout__header mdl-layout__header--transparent">
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <a href="/" class="mdl-navigation__link">
+                        <span class="mdl-layout-title">
+                            {% block navtitle %}{% endblock navtitle %}
+                        </span>
+                    </a>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation -->
+                    <nav class="mdl-navigation">
+                        {% for name, link in g.cfg.SITE_QUICKNAV_ITEMS.iteritems() %}
+                            <a class="mdl-navigation__link" href="{{ link }}">
+                                {{ name }}
+                            </a>
+                        {% endfor %}
+                    </nav>
+                </div>
+            </header>
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">
+                    {% block sidenavtitle %}{% endblock sidenavtitle %}
+                </span>
+                <nav class="mdl-navigation">
+                    {% for name, link in g.cfg.SITE_NAVIGATION_ITEMS.iteritems() %}
+                        <a class="mdl-navigation__link" href="{{ link }}">
+                            {{ name }}
+                        </a>
+                    {% endfor %}
+                </nav>
+            </div>
+        {% endblock top_menu %}
+            <main class="mdl-layout__content">
+                <section class="main-section">
+                    {% block content %}
+                    {% endblock content %}
+                </section>
+            </main>
+        </div>
+        {% block scripts %}
+            <script src="/static/scripts/jquery.min.js"></script>
+            <script src="/static/scripts/material.min.js" defer></script>
+        {% endblock scripts %}
+    </body>
+</html>

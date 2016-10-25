@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ g.cfg.SERIES_DISPLAY_NAME }} :: {{ filter_name }}
+{% endblock title %}
+{% block navtitle %}
+「{{ g.cfg.SERIES_DISPLAY_NAME }}」 ::  「{{ filter_name }}」
+{% endblock navtitle %}
+{% block sidenavtitle %}
+    {{ g.cfg.SERIES_DISPLAY_NAME }} :: {{ filter_name }}
+{% endblock sidenavtitle %}
+
+{% block content %}
+    {% for item in list_items %}
+    <div class="content-card small-card">
+        <div class="card-thumbnail" style="
+            background-image: url('{{ '/static/images/thumbnails/default-thumb.png' }}')">
+        </div>
+        <div class="card-text">
+            <div class="card-text-title">
+                <h1 id="id_{{ item.id }}">
+                    {{ item.name }}
+                </h1>
+                <span class="card-text-title-controls">
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                        <a href="/edit/{{ item.id }}" target="_blank">
+                            <i class="material-icons">edit</i>
+                        </a>
+                    </button>
+
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                        <a href="#id_{{ item.id }}">
+                            <i class="material-icons">bookmark</i>
+                        </a>
+                    </button>
+
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                        <a href="{{ item.url }}" target="_blank">
+                            <i class="material-icons">open_in_new</i>
+                        </a>
+                    </button>
+                </span>
+            </div>
+            <div class="card-text-season">
+                <div class="small-textfield mdl-textfield mdl-js-textfield
+                    mdl-textfield--floating-label">
+                <input class="small-season-field mdl-textfield__input"
+                    type="number"
+                    name="small-season-field-{{ item.id }}"
+                    value="{{ item.season }}">
+                <label class="mdl-textfield__label" for="small-season-field-{{ item.id }}">
+                    {{ g.cfg.SEASON_DISPLAY_NAME }}
+                </label>
+                </div>
+            </div>
+            <div class="card-text-episode">
+                <div class="small-textfield mdl-textfield mdl-js-textfield
+                    mdl-textfield--floating-label">
+                <input class="small-episode-field mdl-textfield__input"
+                       type="number"
+                       name="small-episode-field-{{ item.id }}"
+                       value="{{ item.episode }}">
+                <label class="mdl-textfield__label" for="small-episode-field-{{ item.id }}">
+                    {{ g.cfg.EPISODE_DISPLAY_NAME }}
+                </label>
+                </div>
+            </div>
+            <div class="card-text-controls">
+                <button class="remove-button mdl-button mdl-js-button
+                    mdl-button--flat mdl-button--colored">
+                    <i class="material-icons">remove</i>
+                </button>
+
+                <button class="add-button mdl-button mdl-js-button
+                    mdl-button--flat mdl-button--colored" '. $data_assoc .'>
+                    <i class="material-icons">add</i>
+                </button>
+
+                <button class="save-button mdl-button mdl-js-button
+                    mdl-button--flat mdl-button--colored" type="submit" '. $data_assoc .'>
+                    <i class="material-icons">save</i>
+                </button>
+            </div>
+            <div class="stop-float"></div>
+
+            {% block carddetails %} {% endblock carddetails %}
+        </div>
+        <div class="stop-float"></div>
+    </div>
+    {% endfor %}
+{% endblock content %}
+
+

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ g.cfg.SERIES_DISPLAY_NAME }} :: not found
+{% endblock title %}
+{% block navtitle %}
+「{{ g.cfg.SERIES_DISPLAY_NAME }}」 :「not found 」
+{% endblock navtitle %}
+{% block sidenavtitle %}
+    {{ g.cfg.SERIES_DISPLAY_NAME }} :: not found
+{% endblock sidenavtitle %}
+
+{% block content %}
+    <h1>
+    {% if search_term %}
+        could not find '{{ search_term }}'
+    {% else %}
+        could not find page
+    {% endif %}
+    </h1>
+{% endblock content %}
+
+

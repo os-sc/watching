@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ g.cfg.SERIES_DISPLAY_NAME }} :: Edit
+{% endblock title %}
+{% block navtitle %}
+「{{ g.cfg.SERIES_DISPLAY_NAME }}」 ::  「Edit」
+{% endblock navtitle %}
+{% block sidenavtitle %}
+    {{ g.cfg.SERIES_DISPLAY_NAME }} :: Edit
+{% endblock sidenavtitle %}
+
+{% block content %}
+    <div class="content-card small-card">
+        <div class="card-thumbnail" style="
+            background-image: url('{{ '/static/images/thumbnails/default-thumb.png' }}')">
+        </div>
+        <div class="card-text">
+            <div class="card-text-title">
+                <h1 id="id_{{ item.id }}">
+                    Edit: {{ item.name }} ({{ item.id }})
+                </h1>
+            </div>
+            <div class="cart-text-name big-textfield">
+                <!-- NAME -->
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label big-textfield">
+                    <input  class="mdl-textfield__input"
+                            type="text"
+                            id="edit-name-field"
+                            name="new-name-field"
+                            value="{{ item.name }}"
+                            required>
+                    <label class="mdl-textfield__label" for="edit-name-field">
+                        Name
+                    </label>
+                </div>
+            </div>
+            <div class="card-text-season small-textfield">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"
+                        type="number"
+                        name="small-season-field"
+                        value="{{ item.season }}">
+                    <label class="mdl-textfield__label" for="small-season-field">
+                        {{ g.cfg.SEASON_DISPLAY_NAME }}
+                    </label>
+                </div>
+            </div>
+            <div class="card-text-episode small-textfield">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"
+                           type="number"
+                           name="small-episode-field"
+                           value="{{ item.episode }}">
+                    <label class="mdl-textfield__label" for="small-episode-field">
+                        {{ g.cfg.EPISODE_DISPLAY_NAME }}
+                    </label>
+                </div>
+            </div>
+            <div class="card-text-altnames big-textfield big-multiline-textfield">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <textarea class="mdl-textfield__input"
+                           type="number"
+                           name="alt-name-field">
+{% for n in item.alt_names %}{{ n }},
+{% endfor %}
+                           </textarea>
+                    <label class="mdl-textfield__label" for="alt-name-field">
+                        {{ g.cfg.EPISODE_DISPLAY_NAME }}
+                    </label>
+                </div>
+            </div>
+            <div class="card-text- big-textfield">
+            </div>
+
+            <div class="card-text-controls">
+                <button class="save-button mdl-button mdl-js-button
+                    mdl-button--flat mdl-button--colored" type="submit" '. $data_assoc .'>
+                    <i class="material-icons">save</i>
+                </button>
+            </div>
+            <div class="stop-float"></div>
+
+            {% block carddetails %} {% endblock carddetails %}
+        </div>
+        <div class="stop-float"></div>
+    </div>
+
+
+    <datalist id="status-list">
+        {% for s in all_status %}
+        <option value="{{ s }}">{{ s }}</option>
+        {% endfor %}
+    <datalist>
+
+{% endblock content %}
+
+
