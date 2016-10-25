@@ -1,8 +1,8 @@
 from seriesdatabase import SeriesDatabase
 
 class SeriesManager:
-    def __init__(self):
-        self._db = SeriesDatabase(config.DATABASE_PATH)
+    def __init__(self, dbpath):
+        self._db = SeriesDatabase(dbpath)
 
     def add_series(self, series):
         assert not self._id_already_exists(series.id)

@@ -1,5 +1,5 @@
+import inspect
 from enum import Enum
-from .. import config
 
 class Type(Enum):
     TV      = 1

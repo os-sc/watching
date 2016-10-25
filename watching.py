@@ -1,19 +1,21 @@
 #!/usr/bin/python
 import sys
-import html
 import werkzeug
 from flask import g
 from flask import Flask
 from flask import abort
 from flask import request
 from flask import render_template
-from classes.series import Series
-from classes.seriesmanager import SeriesManager
-from classes.statusenum import Status
-from config import global_config as config
+from series.series import Series
+from series.seriesmanager import SeriesManager
+from series.statusenum import Status
 
 app = Flask(__name__)
-manager = SeriesManager()
+
+# app.config.from_object()
+app.config.from_pyfile('/home/osiris/repos/watching/config.py')
+
+manager = SeriesManager(app.config['DATABASE_PATH'])
 
 @app.route('/')
 @app.route('/edit', methods=['GET'])
@@ -28,7 +30,7 @@ def list(filter='all'):
         list_items=manager.get_all()
     else:
         list_items=manager.get_by_status(filter)
-    g.cfg = config
+    g.cfg = app.config
     return render_template('listing.html'
             , filter_name=filter.title()
             , list_items=list_items)
@@ -41,7 +43,7 @@ def downloads():
 def edit(id):
     item=manager.get_by_id(id)
     if not item: return not_found(404)
-    g.cfg = config
+    g.cfg = app.config
     return render_template('details.html'
             , item=item
             , all_status=Status.get_all())
@@ -50,7 +52,7 @@ def edit(id):
 def search(term):
     list_items=manager.get_by_name(term)
     if not list_items: return not_found(404, term)
-    g.cfg = config
+    g.cfg = app.config
     return render_template('listing.html'
             , filter_name=term
             , list_items=list_items)
@@ -78,7 +80,9 @@ def test(testvar=None):
 @app.errorhandler(404)
 @app.errorhandler(werkzeug.exceptions.NotFound)
 def not_found(code, search_term=None):
-    g.cfg = config
+    g.cfg = app.config
     return render_template('not-found.html'
             , search_term=search_term), 404
 
+if __name__ == "__main__":
+    app.run()

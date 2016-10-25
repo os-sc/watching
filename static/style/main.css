@@ -1,0 +1,167 @@
+body {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    font-family: 'roboto', 'Arial', sans-serif;
+    background-color: #1A1A1A;
+    background: url('/static/images/wallpaper/site-wallpaper.png') center / cover;
+    color: white;
+}
+
+.main-section h1 {
+    font-size: 25px;
+}
+
+/** Cards **/
+.content-card {
+    background: rgba(250, 250, 250, 0.9);
+    color: rgba(0,0,0,.87);
+    margin-bottom: 10px;
+}
+
+.small-card {
+    min-height: 100px;
+    padding: 0;
+}
+
+.big-card {
+    min-height: 200px;
+    padding: 0;
+}
+
+.card-thumbnail {
+    float: left;
+}
+
+.small-card > .card-thumbnail {
+    height: 100px;
+    width: 70px;
+    background-size: cover;
+}
+
+.big-card > .card-thumbnail {
+    height: 200px;
+    width: 140px;
+    background-size: cover;
+}
+
+.small-card > .card-text {
+}
+
+.card-text {
+    float: left;
+    padding-left: 5px;
+}
+
+.card-text div.small-textfield {
+    width: 48%;
+}
+
+.card-text div.big-textfield {
+    width: calc(99% - 4px);
+}
+
+.card-text div.big-multiline-textfield {
+    width: 500px;
+}
+
+.card-text-season,
+.card-text-episode {
+    width: 20%;
+    float: left;
+}
+
+.card-text-controls {
+    width: 55%;
+    padding-top: 12px;
+    float: left;
+}
+
+.content-card h1 {
+    font-size: 20px;
+    margin: 0;
+    display: inline;
+}
+div.mdl-spinner {
+    display: none;
+}
+
+
+/** Navigation **/
+.mdl-layout__header, .mdl-layout__drawer-button {
+    color: white;
+}
+.mdl-layout__drawer-button > i {
+    margin-top: 9px;
+    color: white;
+}
+
+/** Scrollbar **/
+::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+::-webkit-scrollbar-track {
+    background: #1A1A1A;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background: rgba( 255, 255, 255, 0.1);
+}
+
+.stop-float {
+    clear: both;
+}
+
+/** Media Queries **/
+/* Desktops, full */
+@media all and (min-width: 1000px) {
+    section.main-section {
+        margin: 50px auto 0 auto;
+        width: 90%;
+    }
+    .card-text>div {
+        padding-right: 5px;
+    }
+}
+/* Desktops, half */
+@media all and (min-width: 500px) and (max-width: 999px) {
+    section.main-section {
+        margin: 50px auto 0 auto;
+        width: 99%;
+    }
+    .card-text>div {
+        padding-right: 5px;
+    }
+}
+
+/* Mobile */
+@media all and (max-width: 499px) {
+    section.main-section {
+        margin: 50px auto 0 auto;
+        width: 99%;
+    }
+    .content-card>div,
+    .card-text>div {
+        width: 100%;
+        display: block;
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .content-card>div.card-text,
+    .content-card>div.card-thumbnail {
+        float: left;
+        display: inline-block;
+    }
+    .content-card>div.card-text {
+        margin-top: 10px;
+        width: 75%;
+    }
+    .card-text>div.card-text-title {
+        width: 75%;
+    }
+    .card-text-title-controls {
+        display: none;
+    }
+}
+
